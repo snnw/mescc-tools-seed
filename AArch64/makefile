@@ -46,9 +46,16 @@ bin/cc_aarch64-gas: GAS/cc_aarch64.S | bin
 	as GAS/cc_aarch64.S -o bin/cc_aarch64.o
 	ld bin/cc_aarch64.o -o bin/cc_aarch64-gas
 
+# kaem-gas: GAS/kaem-minimal.S | bin
+# 	gas -felf64 GAS/kaem-minimal.S -o bin/kaem.o
+# 	ld -melf_x86_64 bin/kaem.o -o bin/kaem-gas
+
 # make pieces from the GAS pieces
 hex0: hex0-gas
 	./bin/hex0-gas hex0_AArch64.hex0 hex0
+
+# kaem-0: hex0-gas
+# 	./bin/hex0-gas kaem-minimal.hex0 kaem-0
 
 hex1: hex0-gas
 	./bin/hex0-gas hex1_AArch64.hex0 hex1
@@ -76,14 +83,14 @@ M2: hex2-gas M0-gas cc_aarch64-gas catm-gas
 	./bin/catm-gas hold ELF-aarch64.hex2 temp1
 	./bin/hex2-gas hold M2
 
-all: hex0 hex1 catm hex2-0 M0 cc_aarch64 M2
+all: hex0 hex1 catm hex2-0 M0 cc_aarch64 M2 # kaem-0
 
 clean:
-	rm -f hex0 hex1 catm hex2-0 M0 cc_aarch64 M2
+	rm -f hex0 hex1 catm hex2-0 M0 cc_aarch64 M2 # kaem-0
 	rm -rf bin
 
 test: all
 	sha256sum -c SHA256SUMS
 
 Generate_test_answers: all
-	sha256sum hex0 hex1 catm hex2-0 M0 cc_aarch64 M2 >| SHA256SUMS
+	sha256sum hex0 hex1 catm hex2-0 M0 cc_aarch64 M2 >| SHA256SUMS # kaem-0

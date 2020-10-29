@@ -70,7 +70,7 @@ First_pass:
 	call StoreLabel
 
 First_pass_0:
-	; Check for :
+	; Check for %
 	cmp rax, 0x25
 	je First_pass_pointer
 

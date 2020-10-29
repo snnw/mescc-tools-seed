@@ -55,7 +55,7 @@ _start:
 	mov rax, 2                  ; the syscall number for open()
 	syscall                     ; Now open that damn file
 	cmp rax, 0                  ; Check for missing output
-	jg _start_out               ; Have real input
+	jg _start_out               ; Have real output
 	mov rax, 1                  ; Use stdout
 
 _start_out:

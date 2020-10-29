@@ -1,0 +1,4 @@
+#+TITLE: Todo
+
+* hex0
+** TODO merge &input and &output; reduce size to 1 byte
