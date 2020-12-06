@@ -46,9 +46,9 @@ bin/cc_aarch64-gas: GAS/cc_aarch64.S | bin
 	as GAS/cc_aarch64.S -o bin/cc_aarch64.o
 	ld bin/cc_aarch64.o -o bin/cc_aarch64-gas
 
-# kaem-gas: GAS/kaem-minimal.S | bin
-# 	gas -felf64 GAS/kaem-minimal.S -o bin/kaem.o
-# 	ld -melf_x86_64 bin/kaem.o -o bin/kaem-gas
+kaem-gas: GAS/kaem-minimal.S | bin
+	as GAS/kaem-minimal.S -o bin/kaem.o
+	ld bin/kaem.o -o bin/kaem-gas
 
 # make pieces from the GAS pieces
 hex0: hex0-gas
